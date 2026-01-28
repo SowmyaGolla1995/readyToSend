@@ -91,8 +91,9 @@ export async function POST(request) {
     }
   }
 
-  const uploadDir = path.join(process.cwd(), "uploads");
-  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+  const uploadDir = path.join("/tmp", "uploads");
+  if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+
 
   const fileBytesByName = new Map();
   const tempPaths = [];
@@ -106,7 +107,11 @@ export async function POST(request) {
 
       const bytes = Buffer.from(await file.arrayBuffer());
       const safeName = sanitizeName(file.name || "upload");
-      const tempPath = path.join(uploadDir, `${Date.now()}_${safeName}`);
+      const tempPath = path.join(
+        uploadDir,
+        `${Date.now()}_${Math.random().toString(16).slice(2)}_${safeName}`
+      );
+
 
       fs.writeFileSync(tempPath, bytes);
       tempPaths.push(tempPath);
