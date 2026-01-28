@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
+const isMobile = typeof window !== "undefined" && window.innerWidth < 900;
 
 export default function Home() {
   const [files, setFiles] = useState([]); // array of File
@@ -245,20 +246,21 @@ export default function Home() {
         style={{
           maxWidth: 1100,
           margin: "0 auto",
-          padding: "28px 20px 70px",
+          padding: isMobile ? "18px 14px 50px" : "28px 20px 70px",
           fontFamily:
             "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial",
           color: "#111",
         }}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.25fr 0.75fr",
-            gap: 18,
-            alignItems: "start",
-          }}
-        >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "1.25fr 0.75fr",
+          gap: 18,
+          alignItems: "start",
+        }}
+      >
+
           {/* Left */}
           <div
             style={{
@@ -594,7 +596,14 @@ export default function Home() {
             </div>
 
             {/* CTA */}
-            <div style={{ marginTop: 16, display: "flex", gap: 10 }}>
+            <div
+              style={{
+                marginTop: 16,
+                display: "flex",
+                gap: 10,
+                flexDirection: isMobile ? "column" : "row",
+              }}
+            >
               <div style={{ minWidth: 240 }}>
                 {/* UPDATED pricing anchor */}
                 <div style={{ fontSize: 12, color: "#666", marginBottom: 6 }}>
