@@ -161,12 +161,12 @@ export default function Privacy() {
               </ul>
             </Section>
 
-            <Section title="Contact">
+            {/* <Section title="Contact">
               <div style={{ color: "#444", fontSize: 14, lineHeight: 1.7 }}>
                 For questions, add a real support email address here once you have it
                 (example: <b>support@yourdomain.com</b>).
               </div>
-            </Section>
+            </Section> */}
           </div>
         </div>
 
